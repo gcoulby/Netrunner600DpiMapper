@@ -91,6 +91,20 @@ $imgArr = array(
 $client_id = "3eba5784073f743";
 $api_secret = "ba0f9d5179869c0be8890e53f8da13e305ecea0d";
 
+$data = curl_get_contents($url);
+
+$json = curl_get_contents($url);
+$obj = json_decode($json);
+
+$dbArr = array();
+
+foreach ($obj->data as $d)
+{
+    $dbArr[$d->code]["title"] = $d->title;
+    $dbArr[$d->code]["quantity"] = $d->quantity;
+    $dbArr[$d->code]["side_code"] = $d->side_code;
+}
+
 for($i = 0; $i<sizeof($imgurLinks);$i++)
 {
     $setNum = $i > 13 && $i < 20 ? $i + 6 : $i;
@@ -102,6 +116,13 @@ for($i = 0; $i<sizeof($imgurLinks);$i++)
 
         foreach ($imgs as $img)
         {
+            $cardData = isset($dbArr[$img["netrunnerdb_code"]]) ? $dbArr[$img["netrunnerdb_code"]] : null;
+            if($cardData != null)
+            {
+                $img["title"] = $dbArr[$img["netrunnerdb_code"]]["title"];
+                $img["quantity"] = $dbArr[$img["netrunnerdb_code"]]["quantity"];
+                $img["side_code"] = $dbArr[$img["netrunnerdb_code"]]["side_code"];
+            }
             array_push($imgArr["data"], $img);
         }
     }
@@ -112,6 +133,13 @@ for($i = 0; $i<sizeof($imgurLinks);$i++)
             $imgs =  getImages($imgurLinks[$i][$j], $setNum);
             foreach ($imgs as $img)
             {
+                $cardData = isset($dbArr[$img["netrunnerdb_code"]]) ? $dbArr[$img["netrunnerdb_code"]] : null;
+                if($cardData != null)
+                {
+                    $img["title"] = $dbArr[$img["netrunnerdb_code"]]["title"];
+                    $img["quantity"] = $dbArr[$img["netrunnerdb_code"]]["quantity"];
+                    $img["side_code"] = $dbArr[$img["netrunnerdb_code"]]["side_code"];
+                }
                 array_push($imgArr["data"], $img);
             }
         }
@@ -131,12 +159,8 @@ echo json_encode($imgArr, JSON_UNESCAPED_SLASHES);
 
 
 
-$data = curl_get_contents($url);
 
 
-
-$json = curl_get_contents($url);
-$obj = json_decode($json);
 
 //print_pre($obj);
 //echo $obj->access_token;
