@@ -40,6 +40,7 @@ function getImages($imgurCode, $setNum)
     $reply = curl_exec($ch);
 
     $obj = json_decode($reply);
+    //print_pre($obj);
     for($x = 0; $x < sizeof($obj->data); $x++)
     {
         $cardNum = $setNum == 0 ? $x + 5 : $x + 1;

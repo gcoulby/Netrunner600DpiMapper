@@ -1,12 +1,14 @@
 <?php
+//error_reporting(E_ALL);
+//ini_set('display_errors', 'on');
 require_once "functions.php";
 
-$imgurUrl = "https://imgur.com/a/";
+$imgurUrl = "http://imgur.com/a/";
 
 $url = "https://netrunnerdb.com/api/2.0/public/cards";
 
 $imgurLinks = array(
-    "npYzm",
+    "dnrQtbS",
     "jUP2K",
     array(
         "FcFWuRK",
@@ -83,7 +85,7 @@ $imgurLinks = array(
 );
 
 $imgArr = array(
-    "imageUrlTemplate" => "https://i.imgur.com/{link}",
+    "imageUrlTemplate" => "http://i.imgur.com/{link}",
     "data" => array()
 );
 
