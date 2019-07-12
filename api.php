@@ -81,7 +81,7 @@ $imgurLinks = array(
         "ZFD3gtw"
     ),
     "zDOAMEM",
-    "FuSjpQh"
+    "sdjjrKC"
 );
 
 $imgArr = array(
