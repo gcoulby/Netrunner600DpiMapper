@@ -42,7 +42,7 @@ function getImages($imgurCode, $setNum)
     $obj = json_decode($reply);
     for($x = 0; $x < sizeof($obj->data); $x++)
     {
-        $cardNum = $setNum == 0 ? $x + 6 : $x + 1;
+        $cardNum = $setNum == 0 ? $x + 5 : $x + 1;
 
         $cardNum = $setNum == 23 ? $magnumOpsNums[$x] : $cardNum;
         if($setNum == 23 && ($x + 1) > sizeof($magnumOpsNums)) continue;
