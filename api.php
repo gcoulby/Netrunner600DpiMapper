@@ -120,42 +120,87 @@ class Api{
             if($type == "string")
             {
                 $imgs = $this->getImages($this->imgurLinks[$i], $setNum);
-
-                foreach ($imgs as $img)
-                {
-                    $cardData = isset($this->dbArr[$img["netrunnerdb_code"]]) ? $this->dbArr[$img["netrunnerdb_code"]] : null;
-                    if($cardData != null)
-                    {
-                        $img["title"] = $this->dbArr[$img["netrunnerdb_code"]]["title"];
-                        $img["quantity"] = $this->dbArr[$img["netrunnerdb_code"]]["quantity"];
-                        $img["side_code"] = $this->dbArr[$img["netrunnerdb_code"]]["side_code"];
-                    }
-//                    $this->print_pre($img);
-                    array_push($this->imgArr["data"], $img);
-                }
+                $this->ProcessImages($imgs);
             }
             else
             {
                 for($j = 0;$j<sizeof($this->imgurLinks[$i]);$j++)
                 {
                     $imgs = $this->getImages($this->imgurLinks[$i][$j], $setNum, $j);
-
-                    foreach ($imgs as $img)
-                    {
-                        $cardData = isset($this->dbArr[$img["netrunnerdb_code"]]) ? $this->dbArr[$img["netrunnerdb_code"]] : null;
-                        if($cardData != null)
-                        {
-                            $img["title"] = $this->dbArr[$img["netrunnerdb_code"]]["title"];
-                            $img["quantity"] = $this->dbArr[$img["netrunnerdb_code"]]["quantity"];
-                            $img["side_code"] = $this->dbArr[$img["netrunnerdb_code"]]["side_code"];
-                        }
-//                        $this->print_pre($img);
-                        array_push($this->imgArr["data"], $img);
-                    }
+                    $this->ProcessImages($imgs);
                 }
             }
         }
+        $this->AddSupportCards();
+    }
 
+    function ProcessImages($imgs)
+    {
+        foreach ($imgs as $img)
+        {
+            $cardData = isset($this->dbArr[$img["netrunnerdb_code"]]) ? $this->dbArr[$img["netrunnerdb_code"]] : null;
+            if($cardData != null)
+            {
+                $img["title"] = $this->dbArr[$img["netrunnerdb_code"]]["title"];
+                $img["quantity"] = $this->dbArr[$img["netrunnerdb_code"]]["quantity"];
+                $img["side_code"] = $this->dbArr[$img["netrunnerdb_code"]]["side_code"];
+            }
+//                        $this->print_pre($img);
+            array_push($this->imgArr["data"], $img);
+        }
+    }
+
+    function AddSupportCards()
+    {
+        $imgs = array(
+            array(
+                "netrunnerdb_code" => "99001",
+                "link" => "bZyWAJ2.jpg",
+                "title" => "Corp Support",
+                "quantity" => 1,
+                "side_code" => "corp",
+            ),
+            array(
+                "netrunnerdb_code" => "99002",
+                "link" => "ch4atKS.jpg",
+                "title" => "Runner Support",
+                "quantity" => 1,
+                "side_code" => "runner",
+            ),
+            array(
+                "netrunnerdb_code" => "99003",
+                "link" => "yvvlclp.jpg",
+                "title" => "Runner Clicker",
+                "quantity" => 1,
+                "side_code" => "runner",
+            ),
+            array(
+                "netrunnerdb_code" => "99004",
+                "link" => "qDYEB1T.jpg",
+                "title" => "Corp Clicker",
+                "quantity" => 1,
+                "side_code" => "corp",
+            ),
+            array(
+                "netrunnerdb_code" => "99005",
+                "link" => "bSIMofI.jpg",
+                "title" => "Corp Back",
+                "quantity" => 1,
+                "side_code" => "corp",
+            ),
+            array(
+                "netrunnerdb_code" => "99006",
+                "link" => "8U05eV5.jpg",
+                "title" => "Runner Back",
+                "quantity" => 1,
+                "side_code" => "runner",
+            )
+        );
+
+        foreach ($imgs as $img)
+        {
+            array_push($this->imgArr["data"], $img);
+        }
     }
 
     function PrintJson()
