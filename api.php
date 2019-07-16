@@ -70,7 +70,7 @@ class Api{
             "6DTifdK"
         ),
         "So2tnbZ",
-        "pyW0T",
+        "8WTks2L",
         array(
             "sYWqN",
             "sEGaC",
@@ -194,6 +194,27 @@ class Api{
                 "title" => "Runner Back",
                 "quantity" => 1,
                 "side_code" => "runner",
+            ),
+            array(
+                "netrunnerdb_code"=> "99007",
+                "title" => "Runner Back White",
+                "side_code"=> "runner",
+                "quantity"=> 1,
+                "link"=> "sVrH8Fn.png"
+            ),
+            array(
+                "netrunnerdb_code"=> "99008",
+                "title" => "Corp Back White",
+                "side_code"=> "corp",
+                "quantity"=> 1,
+                "link"=> "g7uYUE6.png"
+            ),
+            array(
+                "netrunnerdb_code"=> "99009",
+                "title" => "Blank Back White",
+                "side_code"=> "blank",
+                "quantity"=> 1,
+                "link"=> "DirA0T2.png"
             )
         );
 
